@@ -10,6 +10,7 @@ Source0:	http://home.eunet.no/~pnordahl/ntpasswd/%{name}-source-%{version}.zip
 Patch0:		%{name}-debian.patch
 URL:		http://home.eunet.no/~pnordahl/ntpasswd/
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
