@@ -1,49 +1,23 @@
---- chntpw-0.99.1-030126.orig/chntpw.c
-+++ chntpw-0.99.1-030126/chntpw.c
-@@ -105,7 +105,7 @@
- 
- void str_to_key(unsigned char *str,unsigned char *key)
- {
--	void des_set_odd_parity(des_cblock *);
-+	/* void des_set_odd_parity(des_cblock *); */
- 	int i;
- 
- 	key[0] = str[0]>>1;
 --- chntpw-0.99.1-030126.orig/Makefile
 +++ chntpw-0.99.1-030126/Makefile
-@@ -12,22 +12,26 @@
- OSSLINC=$(OSSLPATH)/include
- 
- CC=gcc
--CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wall
-+CFLAGS += -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wall 
-+# This is needed since chntpasswd uses the old des_XX functions
-+CFLAGS += -DOPENSSL_DES_LIBDES_COMPATIBILITY
+@@ -15,16 +15,13 @@
+ CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wall
  
  # This is to link with whatever we have, SSL crypto lib we put in static
- #LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a
+-LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a
 +LIBS=-L$(OSSLLIB) -lcrypto
  
  # ** This is for linking with older and more lean libc than installed as default
  #    in RH7+ or newer Mandrakes. And probably others. GLIBC has BLOATED!
  # Use the reloc (and force it) in rpm to install into /usr/local :)
  
--LIBS=-L$(OSSLLIB) -L/usr/local/lib -L/usr/local/usr/lib \
--$(OSSLLIB)/libcrypto.a /usr/local/usr/lib/crt1.o /usr/local/usr/lib/crti.o \
--/usr/local/lib/ld-2.0.5.so \
--/usr/local/usr/lib/libc.so /usr/local/lib/libc-2.0.5.so /usr/local/usr/lib/crtn.o 
-+#LIBS=-L$(OSSLLIB) -L/usr/local/lib -L/usr/local/usr/lib 
-+#$(OSSLLIB)/libcrypto.a /usr/local/usr/lib/crt1.o /usr/local/usr/lib/crti.o \
-+#/usr/local/lib/ld-2.0.5.so \
-+#/usr/local/usr/lib/libc.so /usr/local/lib/libc-2.0.5.so /usr/local/usr/lib/crtn.o 
+ #LIBS=-L$(OSSLLIB) -L/usr/local/libold -L/usr/local/usr/lib \
+-$(OSSLLIB)/libcrypto.so /usr/local/usr/lib/crt1.o /usr/local/usr/lib/crti.o \
+-/usr/local/libold/ld-2.0.5.so \
+-/usr/local/usr/lib/libc.so /usr/local/libold/libc-2.0.5.so /usr/local/usr/lib/crtn.o 
  
- chntpw: chntpw.o ntreg.o
--	$(CC) $(CFLAGS) -nostdlib -o chntpw chntpw.o ntreg.o $(LIBS)
-+#	$(CC) $(CFLAGS) -nostdlib -o chntpw chntpw.o ntreg.o $(LIBS)
-+	$(CC) $(CFLAGS) -o chntpw chntpw.o ntreg.o $(LIBS)
+ all: chntpw
  
- #ts: ts.o ntreg.o
- #	$(CC) $(CFLAGS) -nostdlib -o ts ts.o ntreg.o $(LIBS)
 --- chntpw-0.99.1-030126.orig/chntpw.8
 +++ chntpw-0.99.1-030126/chntpw.8
 @@ -0,0 +1,96 @@

@@ -1,12 +1,12 @@
 Summary:	NT SAM password recovery utility
 Summary(pl):	Narzêdzie do odtwarzania hase³ NT SAM
 Name:		chntpw
-Version:	030126
+Version:	040116
 Release:	0.1
 License:	chntpw
 Group:		Applications/System
-Source0:	http://ntpass.blaa.net/%{name}-source-%{version}.zip
-# Source0-md5:	776a7cb0d6eaf7e41cb67efb6caad577
+Source0:	http://home.eunet.no/~pnordahl/ntpasswd/%{name}-source-%{version}.zip
+# Source0-md5:	6c75ac2cf1bf878d107a3f4ebb606959
 Patch0:		%{name}-debian.patch
 URL:		http://home.eunet.no/~pnordahl/ntpasswd/
 BuildRequires:	openssl-devel >= 0.9.7d
