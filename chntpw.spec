@@ -47,7 +47,7 @@ strony domowej.
 rm -rf $RPM_BUILD_ROOT
 
 install -D chntpw $RPM_BUILD_ROOT%{_bindir}/chntpw
-install      cpnt $RPM_BUILD_ROOT%{_bindir}
+install	cpnt $RPM_BUILD_ROOT%{_bindir}
 install -D chntpw.8 $RPM_BUILD_ROOT%{_mandir}/man8/chntpw.8
 
 %clean
