@@ -9,7 +9,7 @@ Source0:	http://ntpass.blaa.net/%{name}-source-%{version}.zip
 # Source0-md5:	776a7cb0d6eaf7e41cb67efb6caad577
 Patch0:		%{name}-debian.patch
 URL:		http://home.eunet.no/~pnordahl/ntpasswd/
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
