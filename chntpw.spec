@@ -1,5 +1,5 @@
 Summary:	NT SAM password recovery utility
-Summary(pl):	Narzêdzie do odtwarzania hase³ NT SAM
+Summary(pl.UTF-8):   NarzÄ™dzie do odtwarzania haseÅ‚ NT SAM
 Name:		chntpw
 Version:	040818
 Release:	1
@@ -24,15 +24,15 @@ wish. If you want GNU/Linux bootdisks for offline password recovery
 you can add this utility to custom image disks or use those provided
 at the tools homepage.
 
-%description -l pl
-chntpw to narzêdzie do odtwarzania hase³ NT SAM. Ten ma³y program
-dostarcza sposób na ogl±danie informacji i zmianê hase³ u¿ytkowników
-w pliku bazy u¿ytkowników Windows NT/2000. Nie trzeba znaæ starych
-hase³, poniewa¿ zostan± one nadpisane. Ponadto pakiet zawiera prosty
+%description -l pl.UTF-8
+chntpw to narzÄ™dzie do odtwarzania haseÅ‚ NT SAM. Ten maÅ‚y program
+dostarcza sposÃ³b na oglÄ…danie informacji i zmianÄ™ haseÅ‚ uÅ¼ytkownikÃ³w
+w pliku bazy uÅ¼ytkownikÃ³w Windows NT/2000. Nie trzeba znaÄ‡ starych
+haseÅ‚, poniewaÅ¼ zostanÄ… one nadpisane. Ponadto pakiet zawiera prosty
 edytor rejestru (zapis danych o tym samym rozmiarze) i edytor
-szesnastkowy pozwalaj±cy na modyfikowanie bitów i bajtów w dowolnym
-pliku. Je¶li chcemy mieæ bootkietkê z Linuksem do odtwarzania hase³,
-mo¿emy dodaæ to narzêdzie do w³asnych obrazów lub u¿yæ obrazów ze
+szesnastkowy pozwalajÄ…cy na modyfikowanie bitÃ³w i bajtÃ³w w dowolnym
+pliku. JeÅ›li chcemy mieÄ‡ bootkietkÄ™ z Linuksem do odtwarzania haseÅ‚,
+moÅ¼emy dodaÄ‡ to narzÄ™dzie do wÅ‚asnych obrazÃ³w lub uÅ¼yÄ‡ obrazÃ³w ze
 strony domowej.
 
 %prep
