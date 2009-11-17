@@ -1,12 +1,12 @@
 Summary:	NT SAM password recovery utility
 Summary(pl.UTF-8):	Narzędzie do odtwarzania haseł NT SAM
 Name:		chntpw
-Version:	070923
+Version:	080526
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://home.eunet.no/~pnordahl/ntpasswd/%{name}-source-%{version}.zip
-# Source0-md5:	3a013336ada58d9383a6e4b609b3149a
+# Source0-md5:	09addfe7ae469677da39ed66d83858d3
 Patch0:		%{name}-debian.patch
 URL:		http://home.eunet.no/~pnordahl/ntpasswd/
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -26,8 +26,8 @@ at the tools homepage.
 
 %description -l pl.UTF-8
 chntpw to narzędzie do odtwarzania haseł NT SAM. Ten mały program
-dostarcza sposób na oglądanie informacji i zmianę haseł użytkowników
-w pliku bazy użytkowników Windows NT/2000. Nie trzeba znać starych
+dostarcza sposób na oglądanie informacji i zmianę haseł użytkowników w
+pliku bazy użytkowników Windows NT/2000. Nie trzeba znać starych
 haseł, ponieważ zostaną one nadpisane. Ponadto pakiet zawiera prosty
 edytor rejestru (zapis danych o tym samym rozmiarze) i edytor
 szesnastkowy pozwalający na modyfikowanie bitów i bajtów w dowolnym
@@ -40,15 +40,15 @@ strony domowej.
 %patch0 -p1
 
 %build
-%{__make} all cpnt \
+%{__make} chntpw cpnt reged \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -D chntpw $RPM_BUILD_ROOT%{_bindir}/chntpw
-install	cpnt $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT%{_bindir}
+install {chntpw,cpnt,reged} $RPM_BUILD_ROOT%{_bindir}
 install -D chntpw.8 $RPM_BUILD_ROOT%{_mandir}/man8/chntpw.8
 
 %clean
