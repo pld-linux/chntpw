@@ -2,7 +2,7 @@ Summary:	NT SAM password recovery utility
 Summary(pl.UTF-8):	Narzędzie do odtwarzania haseł NT SAM
 Name:		chntpw
 Version:	080526
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://home.eunet.no/~pnordahl/ntpasswd/%{name}-source-%{version}.zip
