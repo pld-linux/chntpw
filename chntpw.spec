@@ -1,14 +1,23 @@
+%define		reldate	100627
 Summary:	NT SAM password recovery utility
 Summary(pl.UTF-8):	Narzędzie do odtwarzania haseł NT SAM
 Name:		chntpw
-Version:	100627
+# Version is taken from HISTORY.txt
+Version:	0.99.6
 Release:	1
-License:	GPL
+Epoch:		1
+License:	GPL (ntchpw), LGPL (ntreg)
 Group:		Applications/System
-Source0:	http://pogostick.net/~pnh/ntpasswd/%{name}-source-%{version}.zip
+Source0:	http://pogostick.net/~pnh/ntpasswd/%{name}-source-%{reldate}.zip
 # Source0-md5:	8b046c2073f27eed728e18635ba72dd4
 Patch0:		%{name}-debian.patch
 URL:		http://pogostick.net/~pnh/ntpasswd/
+BuildRequires:	rpmbuild(macros) >= 1.553
+Source2:	%{name}-README.Dist
+# Patches from Jim Meyering to improve robustness of the code.
+Patch5:		%{name}-080526-correct-test-for-failing-open-syscall.patch
+Patch6:		%{name}-080526-detect-failure-to-write-key.patch
+Patch7:		%{name}-080526-reged-no-deref-null.patch
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,26 +45,41 @@ możemy dodać to narzędzie do własnych obrazów lub użyć obrazów ze
 strony domowej.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{reldate}
 %patch0 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+
+cp -p %{SOURCE2} README.Dist
+
+%undos WinReg.txt
+
+ver=$(awk '/%{reldate}/{print $3}' HISTORY.txt)
+if [ "$ver" != %{version} ]; then
+	: plz correct version to $ver
+	exit 1
+fi
 
 %build
 %{__make} chntpw cpnt reged \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags} -DUSEOPENSSL -Wall"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_bindir}
-install {chntpw,cpnt,reged} $RPM_BUILD_ROOT%{_bindir}
-install -D chntpw.8 $RPM_BUILD_ROOT%{_mandir}/man8/chntpw.8
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8}
+install -p chntpw cpnt reged $RPM_BUILD_ROOT%{_bindir}
+cp -a chntpw.8 $RPM_BUILD_ROOT%{_mandir}/man8/chntpw.8
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.txt
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man8/*
+%doc README.txt regedit.txt WinReg.txt HISTORY.txt
+%doc README.Dist
+%attr(755,root,root) %{_bindir}/chntpw
+%attr(755,root,root) %{_bindir}/cpnt
+%attr(755,root,root) %{_bindir}/reged
+%{_mandir}/man8/chntpw.8*

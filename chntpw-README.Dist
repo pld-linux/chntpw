@@ -1,0 +1,4 @@
+cpnt is depricated now (I think) because of ntfs-3g. Furthermore
+reged is probably less useful than regedit.exe under WINE, but
+as both of these might be useful for someone trying to run some
+old script it's probably worthwhile to include them both.
