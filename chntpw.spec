@@ -6,7 +6,7 @@ Name:		chntpw
 Version:	0.99.6
 Release:	1
 Epoch:		1
-License:	GPL (ntchpw), LGPL (ntreg)
+License:	GPL v2 (ntchpw), LGPL (ntreg)
 Group:		Applications/System
 Source0:	http://pogostick.net/~pnh/ntpasswd/%{name}-source-%{reldate}.zip
 # Source0-md5:	8b046c2073f27eed728e18635ba72dd4
