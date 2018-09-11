@@ -1,24 +1,25 @@
-%define		reldate	100627
+%define		reldate	140201
 Summary:	NT SAM password recovery utility
 Summary(pl.UTF-8):	Narzędzie do odtwarzania haseł NT SAM
 Name:		chntpw
 # Version is taken from HISTORY.txt
-Version:	0.99.6
+Version:	1.00
 Release:	1
 Epoch:		1
 License:	GPL v2 (ntchpw), LGPL (ntreg)
 Group:		Applications/System
 Source0:	http://pogostick.net/~pnh/ntpasswd/%{name}-source-%{reldate}.zip
-# Source0-md5:	8b046c2073f27eed728e18635ba72dd4
-Patch0:		%{name}-debian.patch
-URL:		http://pogostick.net/~pnh/ntpasswd/
-BuildRequires:	rpmbuild(macros) >= 1.553
+# Source0-md5:	d60bc657206b07ad84d926649d6417dc
 Source2:	%{name}-README.Dist
+Patch0:		makefile.patch
+Patch1:		%{name}-debian.patch
 # Patches from Jim Meyering to improve robustness of the code.
 Patch5:		%{name}-080526-correct-test-for-failing-open-syscall.patch
 Patch6:		%{name}-080526-detect-failure-to-write-key.patch
 Patch7:		%{name}-080526-reged-no-deref-null.patch
+URL:		http://pogostick.net/~pnh/ntpasswd/
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,6 +48,7 @@ strony domowej.
 %prep
 %setup -q -n %{name}-%{reldate}
 %patch0 -p1
+%patch1 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
