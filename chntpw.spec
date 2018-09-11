@@ -66,7 +66,7 @@ fi
 %build
 %{__make} chntpw cpnt reged \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -DUSEOPENSSL -Wall"
+	OPTFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -1,0 +1,23 @@
+--- chntpw-140201/Makefile~	2014-02-01 17:54:38.000000000 +0200
++++ chntpw-140201/Makefile	2018-09-11 10:47:54.492622319 +0300
+@@ -13,8 +13,8 @@
+ CC=gcc
+ 
+ # Force 32 bit
+-CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wall -m32 
+-OSSLLIB=$(OSSLPATH)/lib
++CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wall $(OPTFLAGS)
++#OSSLLIB=$(OSSLPATH)/lib
+ 
+ # 64 bit if default for compiler setup
+ #CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wall
+@@ -23,8 +23,7 @@
+ 
+ # This is to link with whatever we have, SSL crypto lib we put in static
+ #LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a
+-LIBS=-L$(OSSLLIB)
+-
++#LIBS=-L$(OSSLLIB)
+ 
+ all: chntpw chntpw.static cpnt reged reged.static samusrgrp samusrgrp.static sampasswd sampasswd.static
+ 
