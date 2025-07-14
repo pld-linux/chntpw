@@ -47,11 +47,11 @@ strony domowej.
 
 %prep
 %setup -q -n %{name}-%{reldate}
-%patch0 -p1
-%patch1 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P5 -p1
+%patch -P6 -p1
+%patch -P7 -p1
 
 cp -p %{SOURCE2} README.Dist
 
