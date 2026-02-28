@@ -4,7 +4,7 @@ Summary(pl.UTF-8):	Narzędzie do odtwarzania haseł NT SAM
 Name:		chntpw
 # Version is taken from HISTORY.txt
 Version:	1.00
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 (ntchpw), LGPL (ntreg)
 Group:		Applications/System
