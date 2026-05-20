@@ -4,7 +4,7 @@ Summary(pl.UTF-8):	Narzędzie do odtwarzania haseł NT SAM
 Name:		chntpw
 # Version is taken from HISTORY.txt
 Version:	1.00
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2 (ntchpw), LGPL (ntreg)
 Group:		Applications/System
@@ -17,6 +17,7 @@ Patch1:		%{name}-debian.patch
 Patch5:		%{name}-080526-correct-test-for-failing-open-syscall.patch
 Patch6:		%{name}-080526-detect-failure-to-write-key.patch
 Patch7:		%{name}-080526-reged-no-deref-null.patch
+Patch8:		%{name}-incompatible-pointer-types.patch
 URL:		http://pogostick.net/~pnh/ntpasswd/
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpmbuild(macros) >= 1.553
@@ -52,6 +53,7 @@ strony domowej.
 %patch -P5 -p1
 %patch -P6 -p1
 %patch -P7 -p1
+%patch -P8 -p1
 
 cp -p %{SOURCE2} README.Dist
 
@@ -66,7 +68,7 @@ fi
 %build
 %{__make} chntpw cpnt reged \
 	CC="%{__cc}" \
-	OPTFLAGS="%{rpmcflags}"
+	OPTFLAGS="%{rpmcflags} %{rpmcppflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
